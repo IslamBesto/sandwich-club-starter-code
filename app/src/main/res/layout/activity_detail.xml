@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingBottom="@dimen/margin_large"
         tools:context="com.udacity.sandwichclub.DetailActivity">
@@ -26,14 +26,15 @@
             android:id="@+id/name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/margin_large"
-            android:paddingStart="@dimen/margin_large"
-            android:paddingRight="@dimen/margin_large"
             android:paddingEnd="@dimen/margin_large"
+            android:paddingLeft="@dimen/margin_large"
+            android:paddingRight="@dimen/margin_large"
+            android:paddingStart="@dimen/margin_large"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
             tools:text="Sandwitch" />
 
         <LinearLayout
+            android:id="@+id/also_known_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -46,18 +47,23 @@
                 android:paddingRight="@dimen/margin_large"
                 android:paddingStart="@dimen/margin_large"
                 android:text="@string/detail_also_known_as_label"
-                android:textStyle="normal" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/also_known_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingEnd="@dimen/margin_large"
+                android:paddingLeft="@dimen/margin_large"
+                android:paddingRight="@dimen/margin_large"
+                android:paddingStart="@dimen/margin_large"
                 android:textAllCaps="true"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 tools:text="kebab" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/place_of_origin_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -65,21 +71,25 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/margin_small"
                 android:paddingEnd="@dimen/margin_large"
                 android:paddingLeft="@dimen/margin_large"
                 android:paddingRight="@dimen/margin_large"
                 android:paddingStart="@dimen/margin_large"
                 android:paddingTop="@dimen/margin_small"
-                android:paddingBottom="@dimen/margin_small"
                 android:text="@string/detail_place_of_origin_label"
-                android:textStyle="normal" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/origin_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingEnd="@dimen/margin_large"
+                android:paddingLeft="@dimen/margin_large"
+                android:paddingRight="@dimen/margin_large"
+                android:paddingStart="@dimen/margin_large"
                 android:textAllCaps="true"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 tools:text="Turc" />
         </LinearLayout>
 
@@ -88,27 +98,33 @@
             android:layout_height="@dimen/margin_small"
             android:background="@color/separator_color" />
 
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/description_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/margin_small"
-            android:paddingLeft="@dimen/margin_large"
-            android:paddingStart="@dimen/margin_large"
-            android:paddingTop="@dimen/margin_small"
-            android:text="@string/detail_description_label"
-            android:textStyle="bold" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/description_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingEnd="@dimen/margin_large"
-            android:paddingLeft="@dimen/margin_large"
-            android:paddingRight="@dimen/margin_large"
-            android:paddingStart="@dimen/margin_large"
-            android:paddingBottom="@dimen/margin_small"
-            tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/margin_small"
+                android:paddingLeft="@dimen/margin_large"
+                android:paddingStart="@dimen/margin_large"
+                android:paddingTop="@dimen/margin_small"
+                android:text="@string/detail_description_label"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/description_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/margin_small"
+                android:paddingEnd="@dimen/margin_large"
+                android:paddingLeft="@dimen/margin_large"
+                android:paddingRight="@dimen/margin_large"
+                android:paddingStart="@dimen/margin_large"
+                tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -118,8 +134,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/margin_large"
-            android:paddingStart="@dimen/margin_large"
+            android:padding="@dimen/margin_large"
             android:paddingBottom="@dimen/margin_small"
             android:text="@string/detail_ingredients_label"
             android:textStyle="bold" />
