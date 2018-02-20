@@ -3,6 +3,7 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,9 +25,11 @@ public class DetailActivity extends AppCompatActivity {
     private TextView mMainName;
     private TextView mAlsoKnownAs;
     private TextView mDescription;
-    private IngredientTv mIngredients;
     private ImageView mIngredientsIv;
     private LinearLayout mContainer;
+    private LinearLayout mPlaceOfOriginLayout;
+    private LinearLayout mAlsoKnowAsLayout;
+    private LinearLayout mDescriptionLayout;
 
 
     @Override
@@ -56,11 +59,6 @@ public class DetailActivity extends AppCompatActivity {
         }
         initUI();
         populateUI(sandwich);
-        Picasso.with(this)
-                .load(sandwich.getImage())
-                .into(mIngredientsIv);
-
-        setTitle(sandwich.getMainName());
     }
 
     private void closeOnError() {
@@ -75,23 +73,41 @@ public class DetailActivity extends AppCompatActivity {
         mIngredientsIv = findViewById(R.id.image_iv);
         mMainName = findViewById(R.id.name_tv);
         mContainer = findViewById(R.id.container);
+        mPlaceOfOriginLayout = findViewById(R.id.place_of_origin_layout);
+        mAlsoKnowAsLayout = findViewById(R.id.also_known_layout);
+        mDescriptionLayout = findViewById(R.id.description_layout);
     }
 
     private void populateUI(Sandwich sandwich) {
-        mPlaceOfOrigin.setText(sandwich.getPlaceOfOrigin());
+        String placeOfOrigin = sandwich.getPlaceOfOrigin();
+        if (placeOfOrigin != null && !placeOfOrigin.isEmpty()) {
+            mPlaceOfOrigin.setText(placeOfOrigin);
+        } else {
+            mPlaceOfOriginLayout.setVisibility(View.GONE);
+        }
 
         List<String> alsoKnownAs = sandwich.getAlsoKnownAs();
         String alsoKnownAsString = "";
         for (int i = 0; i < alsoKnownAs.size(); i++) {
-            alsoKnownAsString += alsoKnownAs.get(i) + ", ";
+            if (i == alsoKnownAs.size() - 1) {
+                alsoKnownAsString += alsoKnownAs.get(i);
+            } else {
+                alsoKnownAsString += alsoKnownAs.get(i) + ", ";
+            }
         }
-        if (alsoKnownAsString != null && !alsoKnownAsString.equals("")) {
-
-            alsoKnownAsString.substring(0, alsoKnownAsString.length() - 1);
+        if (alsoKnownAsString != null && !alsoKnownAsString.isEmpty()) {
+            mAlsoKnownAs.setText(alsoKnownAsString);
+        } else {
+            mAlsoKnowAsLayout.setVisibility(View.GONE);
         }
-        mAlsoKnownAs.setText(alsoKnownAsString);
 
-        mDescription.setText(sandwich.getDescription());
+        String description = sandwich.getDescription();
+        if (description != null && !description.isEmpty()) {
+            mDescription.setText(description);
+        } else {
+            mDescriptionLayout.setVisibility(View.GONE);
+        }
+        // Main name is too important so I prefer to display NA instead og gone visibility
         mMainName.setText(sandwich.getMainName());
 
         List<String> ingredients = sandwich.getIngredients();
@@ -100,5 +116,11 @@ public class DetailActivity extends AppCompatActivity {
             ingredientTv.setIngredientTv(ingredients.get(i));
             mContainer.addView(ingredientTv);
         }
+
+        Picasso.with(this)
+                .load(sandwich.getImage())
+                .into(mIngredientsIv);
+
+        setTitle(sandwich.getMainName());
     }
 }

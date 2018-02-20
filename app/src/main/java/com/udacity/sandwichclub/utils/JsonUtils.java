@@ -12,7 +12,6 @@ import java.util.List;
 public class JsonUtils {
 
     public static Sandwich parseSandwichJson(String json) {
-        String imageNA = "https://vignette.wikia.nocookie.net/janethevirgin/images/4/42/Image-not-available_1.jpg/revision/latest?cb=20150721102313";
         Sandwich sandwich = null;
         if (json != null) {
             sandwich = new Sandwich();
@@ -30,7 +29,7 @@ public class JsonUtils {
 
                 String placeOfOrigin = sandwichJsonObject.getString("placeOfOrigin");
                 String description = sandwichJsonObject.getString("description");
-                String image = sandwichJsonObject.optString("image", imageNA);
+                String image = sandwichJsonObject.getString("image");
 
                 JSONArray ingredients = sandwichJsonObject.getJSONArray("ingredients");
                 List<String> ingredientsList = new ArrayList<>();
