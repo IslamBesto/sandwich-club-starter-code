@@ -3,6 +3,7 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -87,14 +88,8 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         List<String> alsoKnownAs = sandwich.getAlsoKnownAs();
-        String alsoKnownAsString = "";
-        for (int i = 0; i < alsoKnownAs.size(); i++) {
-            if (i == alsoKnownAs.size() - 1) {
-                alsoKnownAsString += alsoKnownAs.get(i);
-            } else {
-                alsoKnownAsString += alsoKnownAs.get(i) + ", ";
-            }
-        }
+        String alsoKnownAsString = TextUtils.join(",", alsoKnownAs);
+
         if (alsoKnownAsString != null && !alsoKnownAsString.isEmpty()) {
             mAlsoKnownAs.setText(alsoKnownAsString);
         } else {
